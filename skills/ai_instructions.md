@@ -9,10 +9,10 @@ This document outlines the architectural rules, coding standards, and constraint
 - Do NOT add frontend packages, NPM scripts, Vite, TailwindCSS, or Blade templates for page rendering.
 - Keep only backend configurations and API routing files.
 
-### 2. Pragmatic & Direct Code (Strictly No Over-Engineering)
-- **Do NOT use dogmatic "Clean Code" abstractions** like Service Pattern, Repository Pattern, or custom Form Requests unless absolutely necessary.
-- Avoid indirection. Keep code simple, readable, and written directly where it is executed (e.g., directly inside Controllers or Eloquent Models).
-- Prioritize developer efficiency and straightforward, linear execution over multi-layered architectures.
+### 2. Structured Laravel Architecture
+- **Service Pattern**: Business logic (generating short codes, cache lookup, database management) must be separated into service classes under `app/Services/` (e.g., `UrlShortenerService.php`).
+- **DTO (Data Transfer Object) Pattern**: Use typed DTO classes under `app/DTOs/` (e.g., `LinkCreateDTO.php`) to carry request data from Controllers to Services cleanly.
+- **Form Requests**: Use Laravel's dedicated Form Request classes under `app/Http/Requests/` (e.g., `StoreLinkRequest.php`) to isolate request validation and keep Controllers clean.
 
 ### 3. Strict Typing
 - Always declare strict types at the very top of all PHP files:
