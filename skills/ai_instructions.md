@@ -11,7 +11,6 @@ This document outlines the architectural rules, coding standards, and constraint
 
 ### 2. Structured Laravel Architecture
 - **Service Pattern**: Business logic (generating short codes, cache lookup, database management) must be separated into service classes under `app/Services/` (e.g., `UrlShortenerService.php`).
-- **DTO (Data Transfer Object) Pattern**: Use typed DTO classes under `app/DTOs/` (e.g., `LinkCreateDTO.php`) to carry request data from Controllers to Services cleanly.
 - **Form Requests**: Use Laravel's dedicated Form Request classes under `app/Http/Requests/` (e.g., `StoreLinkRequest.php`) to isolate request validation and keep Controllers clean.
 
 ### 3. Strict Typing
