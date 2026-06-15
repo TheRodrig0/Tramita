@@ -10,7 +10,7 @@ Accept: application/json
 {
   "name": "Rodrigo",
   "email": "rodrigo.teste@email.com",
-  "password": "password123"
+  "password": "{{$dotenv API_TEST_PASSWORD}}"
 }
 
 ### 2. Fazer Login (Caso já tenha registrado)
@@ -21,7 +21,7 @@ Accept: application/json
 
 {
   "email": "rodrigo.teste@email.com",
-  "password": "password123"
+  "password": "{{$dotenv API_TEST_PASSWORD}}"
 }
 
 ### Pegamos o token retornado nas requisições acima
