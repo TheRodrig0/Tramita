@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\Click;
+use App\Jobs\ProcessLinkClick;
 use App\Models\Link;
 use Illuminate\Support\Facades\Cache;
 
@@ -38,13 +38,8 @@ final class RedirectService
             abort(404, 'Link não encontrado ou inativo.');
         }
 
-        // Registra o clique
-        Click::create([
-            'link_id' => $linkData['id'],
-            'ip_address' => $clickData['ip_address'] ?? null,
-            'user_agent' => $clickData['user_agent'] ?? null,
-            'referer' => $clickData['referer'] ?? null,
-        ]);
+        // Registra o clique de forma assíncrona
+        ProcessLinkClick::dispatch($linkData['id'], $clickData);
 
         return $linkData['destination_url'];
     }
