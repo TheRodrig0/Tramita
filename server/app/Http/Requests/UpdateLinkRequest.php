@@ -10,7 +10,7 @@ class UpdateLinkRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('update', $this->route('link'));
     }
 
     public function rules(): array

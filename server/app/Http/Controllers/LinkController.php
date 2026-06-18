@@ -19,6 +19,7 @@ class LinkController extends Controller
     public function __construct(
         protected LinkService $linkService
     ) {
+        $this->authorizeResource(Link::class, 'link');
     }
 
     /**
