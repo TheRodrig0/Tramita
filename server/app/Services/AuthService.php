@@ -57,6 +57,6 @@ final class AuthService
      */
     public function logoutUser(User $user): void
     {
-        $user->currentAccessToken()->delete();
+        $user->currentAccessToken()?->delete();
     }
 }
