@@ -1,0 +1,131 @@
+@baseUrl = http://127.0.0.1:8000/api
+@appUrl = http://127.0.0.1:8000
+
+# ==========================================
+# 🔐 AUTENTICAÇÃO
+# ==========================================
+
+### Registrar Usuário
+# @name register
+POST {{baseUrl}}/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Rodrigo",
+  "email": "rodrigo.teste@email.com",
+  "password": "{{$dotenv API_TEST_PASSWORD}}"
+}
+
+### Fazer Login
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "rodrigo.teste@email.com",
+  "password": "{{$dotenv API_TEST_PASSWORD}}"
+}
+
+### 🔄 Extrai o token do Login para usar no resto do arquivo
+@token = {{login.response.body.access_token}}
+
+### Logout (Exemplo)
+POST {{baseUrl}}/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+# ==========================================
+# 🔗 LINKS ENCURTADOS
+# ==========================================
+
+### Listar todos os Links do Usuário
+GET {{baseUrl}}/links
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Criar Link Encurtado
+# @name createLink
+POST {{baseUrl}}/links
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "destination_url": "https://www.google.com",
+  "title": "Link para o Google"
+}
+
+### 🔄 Extrai o código e ID do link gerado
+@code = {{createLink.response.body.code}}
+@linkId = {{createLink.response.body.id}}
+
+### Visualizar um Link Específico
+GET {{baseUrl}}/links/{{linkId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Atualizar um Link (Mudança de Link)
+PUT {{baseUrl}}/links/{{linkId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "destination_url": "https://www.google.com/search?q=laravel",
+  "title": "Link Atualizado para Pesquisa Google"
+}
+
+### Deletar um Link
+DELETE {{baseUrl}}/links/{{linkId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### Testar Redirecionamento Público
+# IMPORTANTE: Esse teste vai falhar com 404 se você tiver rodado o comando de DELETE acima.
+# Para testar esse aqui de forma independente, crie um link e pule o delete.
+GET {{appUrl}}/{{code}}
+
+
+# ==========================================
+# 🔑 RECUPERAÇÃO DE SENHA
+# ==========================================
+
+### Solicitar Redefinição de Senha
+POST {{baseUrl}}/forgot-password
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "rodrigo.teste@email.com"
+}
+
+### ⚠️ Copie o token do log: storage/logs/laravel.log
+### Busque por "Reset Password Notification" e copie o token da URL
+@resetToken = COLE_O_TOKEN_AQUI
+
+### Redefinir Senha com o Token
+POST {{baseUrl}}/reset-password
+Content-Type: application/json
+Accept: application/json
+
+{
+  "token": "{{resetToken}}",
+  "email": "rodrigo.teste@email.com",
+  "password": "NovaSenha@123",
+  "password_confirmation": "NovaSenha@123"
+}
+
+### Fazer Login com a Nova Senha (para testar se funcionou)
+POST {{baseUrl}}/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "rodrigo.teste@email.com",
+  "password": "NovaSenha@123"
+}
+
