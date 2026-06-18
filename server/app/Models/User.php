@@ -9,6 +9,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -20,7 +21,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory;
 
     /**
-     * Get the attributes that should be cast.
+     * Obter os atributos que devem ser convertidos (cast).
      *
      * @return array<string, string>
      */
@@ -30,5 +31,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relacionamento: O usuário possui muitos links criados.
+     */
+    public function links(): HasMany
+    {
+        return $this->hasMany(Link::class);
     }
 }

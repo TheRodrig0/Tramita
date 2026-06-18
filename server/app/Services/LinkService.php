@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Link;
+use App\Models\User;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
@@ -13,11 +14,11 @@ use Illuminate\Support\Str;
 final class LinkService
 {
     /**
-     * Listar todos os links de forma paginada.
+     * Listar todos os links de forma paginada para um usuário específico.
      */
-    public function paginate(int $limit): LengthAwarePaginator
+    public function paginate(User $user, int $limit): LengthAwarePaginator
     {
-        return Link::paginate($limit);
+        return $user->links()->latest()->paginate($limit);
     }
 
     /**

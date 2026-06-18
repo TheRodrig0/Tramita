@@ -19,7 +19,6 @@ class LinkController extends Controller
     public function __construct(
         protected LinkService $linkService
     ) {
-        $this->authorizeResource(Link::class, 'link');
     }
 
     /**
@@ -27,11 +26,13 @@ class LinkController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
+        $this->authorize('viewAny', Link::class);
+
         $limit = $request->integer('limit', self::DEFAULT_PAGE_LIMIT);
         $limit = min($limit, self::MAX_PAGE_LIMIT);
         $limit = max(1, $limit);
 
-        $links = $this->linkService->paginate($limit);
+        $links = $this->linkService->paginate($request->user(), $limit);
 
         return response()->json($links);
     }
@@ -41,6 +42,8 @@ class LinkController extends Controller
      */
     public function store(StoreLinkRequest $request): JsonResponse
     {
+        $this->authorize('create', Link::class);
+
         $validatedData = $request->validated();
         $validatedData['user_id'] = $request->user()?->id;
 
@@ -54,6 +57,8 @@ class LinkController extends Controller
      */
     public function show(Link $link): JsonResponse
     {
+        $this->authorize('view', $link);
+
         return response()->json($link);
     }
 
@@ -62,6 +67,8 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link): JsonResponse
     {
+        $this->authorize('update', $link);
+
         $validatedData = $request->validated();
 
         $updatedLink = $this->linkService->update($link, $validatedData);
@@ -74,6 +81,8 @@ class LinkController extends Controller
      */
     public function destroy(Link $link): JsonResponse
     {
+        $this->authorize('delete', $link);
+
         $this->linkService->delete($link);
 
         return response()->json(null, 204);
