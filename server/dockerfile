@@ -1,0 +1,24 @@
+FROM dunglas/frankenphp:1-php8.4
+
+# Instala o Composer usando versão estável
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN install-php-extensions \
+    pcntl \
+    pdo_mysql \
+    pdo_pgsql \
+    redis
+
+# Copia o código já atribuindo a posse ao usuário www-data
+COPY --chown=www-data:www-data . /app
+
+# Executa o composer install
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Cria apenas os diretórios do Caddy/FrankenPHP com a permissão correta
+RUN mkdir -p /data /config && chown -R www-data:www-data /data /config
+
+# Define que o container executará como www-data (não-root)
+USER www-data
+
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
