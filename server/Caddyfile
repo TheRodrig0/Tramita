@@ -1,0 +1,18 @@
+{
+    frankenphp {
+        num_threads 16
+        worker {
+            file /app/public/frankenphp-worker.php
+            {$CADDY_SERVER_WORKER_DIRECTIVE}
+        }
+    }
+}
+
+localhost:443 {
+    bind 0.0.0.0
+    root * /app/public
+    encode zstd gzip
+    php_server {
+        index frankenphp-worker.php
+    }
+}

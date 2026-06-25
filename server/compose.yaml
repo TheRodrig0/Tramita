@@ -1,0 +1,51 @@
+services:
+    frankenphp:
+        build:
+            context: .
+        entrypoint: php artisan octane:frankenphp --caddyfile=/app/Caddyfile --workers=4
+        ports:
+            - "${APP_PORT:-80}:80"
+            - "443:443"
+            - "443:443/udp"
+        environment:
+            SERVER_NAME: localhost
+            XDG_CONFIG_HOME: /app/config
+            XDG_DATA_HOME: /app/data
+        volumes:
+            - .:/app
+        networks:
+            - sail
+        depends_on:
+            - pgsql
+    pgsql:
+        image: 'postgres:18-alpine'
+        ports:
+            - '${FORWARD_DB_PORT:-5432}:5432'
+        environment:
+            PGPASSWORD: '${DB_PASSWORD:-secret}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        volumes:
+            - 'sail-pgsql:/var/lib/postgresql'
+            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - pg_isready
+                - '-q'
+                - '-d'
+                - '${DB_DATABASE}'
+                - '-U'
+                - '${DB_USERNAME}'
+            retries: 3
+            timeout: 5s
+networks:
+    sail:
+        driver: bridge
+volumes:
+    sail-pgsql:
+        driver: local
+

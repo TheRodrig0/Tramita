@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+vendor
+tests
+.env
+compose.yaml
+dockerfile
+storage/*.sqlite
+storage/logs/**/*.log
+bootstrap/cache/*
+frankenphp
+data/
