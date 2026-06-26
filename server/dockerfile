@@ -5,9 +5,8 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 RUN install-php-extensions \
     pcntl \
-    pdo_mysql \
     pdo_pgsql \
-    redis
+    zip
 
 # Copia o código já atribuindo a posse ao usuário www-data
 COPY --chown=www-data:www-data . /app

@@ -29,3 +29,5 @@ Thumbs.db
 **/caddy
 frankenphp
 frankenphp-worker.php
+/data
+/config/composer

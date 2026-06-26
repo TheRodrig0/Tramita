@@ -8,7 +8,8 @@
     }
 }
 
-localhost:443 {
+# O Caddy substitui dinamicamente pelo valor da variável de ambiente
+{$SERVER_NAME} {
     bind 0.0.0.0
     root * /app/public
     encode zstd gzip
