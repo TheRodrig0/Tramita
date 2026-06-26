@@ -8,7 +8,7 @@ services:
             - "443:443"
             - "443:443/udp"
         environment:
-            SERVER_NAME: localhost
+            SERVER_NAME: "${SERVER_NAME:-localhost}"
             XDG_CONFIG_HOME: /app/config
             XDG_DATA_HOME: /app/data
         volumes:
