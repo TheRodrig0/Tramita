@@ -12,7 +12,7 @@ RUN install-php-extensions \
 COPY --chown=www-data:www-data . /app
 
 # Executa o composer install
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --optimize-autoloader --no-interaction
 
 # Cria apenas os diretórios do Caddy/FrankenPHP com a permissão correta
 RUN mkdir -p /data /config && chown -R www-data:www-data /data /config

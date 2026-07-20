@@ -13,22 +13,23 @@ services:
             XDG_DATA_HOME: /app/data
         volumes:
             - .:/app
+            - /app/vendor
         networks:
             - sail
         depends_on:
-            - pgsql
+            pgsql:
+                condition: service_healthy
     pgsql:
         image: 'postgres:18-alpine'
         ports:
             - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
             PGPASSWORD: '${DB_PASSWORD:-secret}'
-            POSTGRES_DB: '${DB_DATABASE}'
-            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_DB: '${DB_DATABASE:-tramita}'
+            POSTGRES_USER: '${DB_USERNAME:-tramita}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
         volumes:
             - 'sail-pgsql:/var/lib/postgresql'
-            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
             - sail
         healthcheck:
@@ -37,9 +38,9 @@ services:
                 - pg_isready
                 - '-q'
                 - '-d'
-                - '${DB_DATABASE}'
+                - '${DB_DATABASE:-tramita}'
                 - '-U'
-                - '${DB_USERNAME}'
+                - '${DB_USERNAME:-tramita}'
             retries: 3
             timeout: 5s
 networks:

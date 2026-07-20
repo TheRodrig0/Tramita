@@ -35,20 +35,22 @@ Você tem duas opções para rodar o projeto localmente: utilizando **Docker (Re
    ```bash
    cp .env.example .env
    ```
-   *Nota: O `compose.yaml` já provisiona um contêiner PostgreSQL (`pgsql`). Para usá-lo, modifique as variáveis de banco de dados no seu `.env` para apontar para o PostgreSQL.*
+   *Nota: O `compose.yaml` já provisiona um contêiner PostgreSQL (`pgsql`). Para usá-lo, modifique as seguintes variáveis no seu `.env`:*
+   ```env
+   DB_CONNECTION=pgsql
+   DB_HOST=pgsql
+   DB_PORT=5432
+   DB_DATABASE=tramita
+   DB_USERNAME=tramita
+   DB_PASSWORD=secret
+   ```
 
 2. **Suba os contêineres e realize o build:**
    ```bash
    docker compose up -d --build
    ```
 
-3. **Instale as dependências:**
-   Como estamos mapeando o seu diretório local para dentro do contêiner (`volumes: - .:/app`), a pasta `vendor` gerada no build da imagem é sobrescrita. Portanto, você deve rodar:
-   ```bash
-   docker compose exec frankenphp composer install
-   ```
-
-4. **Gere a chave da aplicação e rode as migrations:**
+3. **Gere a chave da aplicação e rode as migrations:**
    ```bash
    docker compose exec frankenphp php artisan key:generate
    docker compose exec frankenphp php artisan migrate
