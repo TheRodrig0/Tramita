@@ -18,7 +18,10 @@ final class LinkService
      */
     public function paginate(User $user, int $limit): LengthAwarePaginator
     {
-        return $user->links()->latest()->paginate($limit);
+        return $user->links()
+            ->withCount('clicks')
+            ->latest()
+            ->paginate($limit);
     }
 
     /**
