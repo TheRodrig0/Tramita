@@ -36,8 +36,9 @@ final class AuthService
     public function loginUser(array $credentials): array
     {
         $user = User::where('email', $credentials['email'])->first();
+        $validPassword = $user && Hash::check($credentials['password'], $user->password);
 
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        if (!$user || !$validPassword) {
             throw ValidationException::withMessages([
                 'email' => ['As credenciais fornecidas estão incorretas.'],
             ]);

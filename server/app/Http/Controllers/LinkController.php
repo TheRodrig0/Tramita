@@ -59,6 +59,14 @@ class LinkController extends Controller
     {
         $this->authorize('view', $link);
 
+        $link->loadCount('clicks');
+
+        $link->load([
+            'clicks' => function ($query) {
+                $query->latest()->limit(50);
+            }
+        ]);
+
         return response()->json($link);
     }
 
