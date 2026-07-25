@@ -31,13 +31,15 @@ class ProcessLinkClick implements ShouldQueue
     {
         $link = Link::find($this->linkId);
 
-        if ($link && $link->user_id !== null) {
-            Click::create([
-                'link_id' => $this->linkId,
-                'ip_address' => $this->clickData['ip_address'] ?? null,
-                'user_agent' => $this->clickData['user_agent'] ?? null,
-                'referer' => $this->clickData['referer'] ?? null,
-            ]);
+        if (! $link || $link->user_id === null) {
+            return;
         }
+
+        Click::create([
+            'link_id' => $this->linkId,
+            'ip_address' => $this->clickData['ip_address'] ?? null,
+            'user_agent' => $this->clickData['user_agent'] ?? null,
+            'referer' => $this->clickData['referer'] ?? null,
+        ]);
     }
 }
