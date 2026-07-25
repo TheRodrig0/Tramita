@@ -24,6 +24,7 @@ final class RedirectService
 
                 return [
                     'id' => $model->id,
+                    'user_id' => $model->user_id,
                     'is_active' => $model->is_active,
                     'expires_at' => $model->expires_at?->timestamp,
                     'destination_url' => $model->destination_url,
@@ -35,12 +36,14 @@ final class RedirectService
         $isActive = $linkData['is_active'];
 
         // Se o link tiver data de validade e já expirou ou estiver inativo, retorna 404
-        if (!$isActive || $isExpired) {
+        if (! $isActive || $isExpired) {
             abort(404, 'Link não encontrado ou inativo.');
         }
 
-        // Registra o clique de forma assíncrona
-        ProcessLinkClick::dispatch($linkData['id'], $clickData);
+        // Registra o clique de forma assíncrona apenas se o link pertencer a um usuário cadastrado
+        if ($linkData['user_id'] !== null) {
+            ProcessLinkClick::dispatch($linkData['id'], $clickData);
+        }
 
         return $linkData['destination_url'];
     }
