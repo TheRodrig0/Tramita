@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Jobs\ProcessLinkClick;
 use App\Models\Link;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
