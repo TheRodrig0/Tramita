@@ -12,8 +12,7 @@ class RedirectController extends Controller
 {
     public function __construct(
         protected RedirectService $redirectService
-    ) {
-    }
+    ) {}
 
     /**
      * Handle the redirect for the short link and register the click.

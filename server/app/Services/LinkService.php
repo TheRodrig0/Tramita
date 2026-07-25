@@ -6,7 +6,6 @@ namespace App\Services;
 
 use App\Models\Link;
 use App\Models\User;
-
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;

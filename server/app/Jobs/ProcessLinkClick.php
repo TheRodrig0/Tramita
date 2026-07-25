@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Models\Click;
+use App\Models\Link;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -28,6 +29,12 @@ class ProcessLinkClick implements ShouldQueue
      */
     public function handle(): void
     {
+        $link = Link::find($this->linkId);
+
+        if (! $link || $link->user_id === null) {
+            return;
+        }
+
         Click::create([
             'link_id' => $this->linkId,
             'ip_address' => $this->clickData['ip_address'] ?? null,

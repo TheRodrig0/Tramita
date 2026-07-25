@@ -35,7 +35,7 @@ final class RedirectService
         $isActive = $linkData['is_active'];
 
         // Se o link tiver data de validade e já expirou ou estiver inativo, retorna 404
-        if (!$isActive || $isExpired) {
+        if (! $isActive || $isExpired) {
             abort(404, 'Link não encontrado ou inativo.');
         }
 

@@ -14,8 +14,7 @@ class AuthController extends Controller
 {
     public function __construct(
         protected AuthService $authService
-    ) {
-    }
+    ) {}
 
     /**
      * Registrar um novo usuário.
@@ -45,7 +44,7 @@ class AuthController extends Controller
         $this->authService->logoutUser($request->user());
 
         return response()->json([
-            'message' => 'Logout realizado com sucesso.'
+            'message' => 'Logout realizado com sucesso.',
         ]);
     }
 }

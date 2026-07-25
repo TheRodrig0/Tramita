@@ -13,8 +13,7 @@ class PasswordController extends Controller
 {
     public function __construct(
         protected PasswordResetService $passwordResetService
-    ) {
-    }
+    ) {}
 
     /**
      * Enviar o link de redefinição de senha para o e-mail do usuário.
