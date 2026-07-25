@@ -8,18 +8,18 @@ use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
 use App\Models\Link;
 use App\Services\LinkService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class LinkController extends Controller
 {
     private const int DEFAULT_PAGE_LIMIT = 15;
-
     private const int MAX_PAGE_LIMIT = 100;
 
     public function __construct(
         protected LinkService $linkService
-    ) {}
+    ) {
+    }
 
     /**
      * Listar todos os links do usuário autenticado.
@@ -45,7 +45,7 @@ class LinkController extends Controller
         $this->authorize('create', Link::class);
 
         $validatedData = $request->validated();
-        $validatedData['user_id'] = $request->user('sanctum')?->id;
+        $validatedData['user_id'] = $request->user()?->id;
 
         $link = $this->linkService->create($validatedData);
 
@@ -64,7 +64,7 @@ class LinkController extends Controller
         $link->load([
             'clicks' => function ($query) {
                 $query->latest()->limit(50);
-            },
+            }
         ]);
 
         return response()->json($link);

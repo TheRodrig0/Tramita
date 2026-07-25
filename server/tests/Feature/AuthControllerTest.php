@@ -17,14 +17,14 @@ class AuthControllerTest extends TestCase
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password_confirmation' => 'password123'
         ]);
 
         $response->assertStatus(201);
         $response->assertJsonStructure(['user', 'access_token', 'token_type']);
 
         $this->assertDatabaseHas('users', [
-            'email' => 'john@example.com',
+            'email' => 'john@example.com'
         ]);
     }
 
@@ -32,12 +32,12 @@ class AuthControllerTest extends TestCase
     {
         $user = User::factory()->create([
             'email' => 'john@example.com',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('password123')
         ]);
 
         $response = $this->postJson('/api/login', [
             'email' => 'john@example.com',
-            'password' => 'password123',
+            'password' => 'password123'
         ]);
 
         $response->assertStatus(200);
@@ -48,12 +48,12 @@ class AuthControllerTest extends TestCase
     {
         $user = User::factory()->create([
             'email' => 'john@example.com',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('password123')
         ]);
 
         $response = $this->postJson('/api/login', [
             'email' => 'john@example.com',
-            'password' => 'wrongpassword',
+            'password' => 'wrongpassword'
         ]);
 
         $response->assertStatus(422);
@@ -73,14 +73,14 @@ class AuthControllerTest extends TestCase
     public function test_user_cannot_register_with_existing_email()
     {
         User::factory()->create([
-            'email' => 'john@example.com',
+            'email' => 'john@example.com'
         ]);
 
         $response = $this->postJson('/api/register', [
             'name' => 'Jane Doe',
             'email' => 'john@example.com',
             'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password_confirmation' => 'password123'
         ]);
 
         $response->assertStatus(422);
@@ -93,7 +93,7 @@ class AuthControllerTest extends TestCase
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'password123',
-            'password_confirmation' => 'wrongpassword',
+            'password_confirmation' => 'wrongpassword'
         ]);
 
         $response->assertStatus(422);
@@ -104,7 +104,7 @@ class AuthControllerTest extends TestCase
     {
         $response = $this->postJson('/api/login', [
             'email' => 'ghost@example.com',
-            'password' => 'password123',
+            'password' => 'password123'
         ]);
 
         $response->assertStatus(422);

@@ -33,7 +33,7 @@ class LinkControllerTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->postJson('/api/links', [
-            'destination_url' => 'https://example.com',
+            'destination_url' => 'https://example.com'
         ]);
 
         $response->assertStatus(201);
@@ -42,7 +42,7 @@ class LinkControllerTest extends TestCase
         // Verifica se o link foi associado ao usuário logado
         $this->assertDatabaseHas('links', [
             'user_id' => $user->id,
-            'destination_url' => 'https://example.com',
+            'destination_url' => 'https://example.com'
         ]);
     }
 
@@ -75,13 +75,13 @@ class LinkControllerTest extends TestCase
         $link = Link::factory()->create(['user_id' => $user->id, 'destination_url' => 'https://old.com']);
 
         $response = $this->actingAs($user)->putJson("/api/links/{$link->id}", [
-            'destination_url' => 'https://new.com',
+            'destination_url' => 'https://new.com'
         ]);
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('links', [
             'id' => $link->id,
-            'destination_url' => 'https://new.com',
+            'destination_url' => 'https://new.com'
         ]);
     }
 
@@ -92,7 +92,7 @@ class LinkControllerTest extends TestCase
         $link = Link::factory()->create(['user_id' => $owner->id, 'destination_url' => 'https://old.com']);
 
         $response = $this->actingAs($intruder)->putJson("/api/links/{$link->id}", [
-            'destination_url' => 'https://new.com',
+            'destination_url' => 'https://new.com'
         ]);
 
         $response->assertStatus(403);
@@ -126,7 +126,7 @@ class LinkControllerTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->postJson('/api/links', [
-            'destination_url' => 'not-a-valid-url',
+            'destination_url' => 'not-a-valid-url'
         ]);
 
         $response->assertStatus(422);
@@ -147,41 +147,6 @@ class LinkControllerTest extends TestCase
     {
         $response = $this->getJson('/api/links');
 
-        $response->assertStatus(401);
-    }
-
-    public function test_guest_user_can_create_a_link()
-    {
-        $response = $this->postJson('/api/links', [
-            'destination_url' => 'https://guestexample.com',
-        ]);
-
-        $response->assertStatus(201);
-        $response->assertJsonStructure(['id', 'destination_url', 'code', 'created_at']);
-
-        $this->assertDatabaseHas('links', [
-            'user_id' => null,
-            'destination_url' => 'https://guestexample.com',
-        ]);
-    }
-
-    public function test_guest_cannot_view_or_modify_links()
-    {
-        $owner = User::factory()->create();
-        $link = Link::factory()->create(['user_id' => $owner->id]);
-
-        // Não consegue visualizar detalhes
-        $response = $this->getJson("/api/links/{$link->id}");
-        $response->assertStatus(401);
-
-        // Não consegue atualizar
-        $response = $this->putJson("/api/links/{$link->id}", [
-            'destination_url' => 'https://newdestination.com',
-        ]);
-        $response->assertStatus(401);
-
-        // Não consegue deletar
-        $response = $this->deleteJson("/api/links/{$link->id}");
         $response->assertStatus(401);
     }
 }

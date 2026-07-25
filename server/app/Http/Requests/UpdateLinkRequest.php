@@ -22,7 +22,7 @@ class UpdateLinkRequest extends FormRequest
             'code' => ['nullable', 'string', 'alpha_dash', 'max:50', "unique:links,code,$linkId"],
             'title' => ['nullable', 'string', 'max:255'],
             'expires_at' => ['nullable', 'date', 'after:now'],
-            'is_active' => ['sometimes', 'boolean'],
+            'is_active' => ['sometimes', 'boolean']
         ];
     }
 

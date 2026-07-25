@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LinkController;
-use App\Http\Controllers\PasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PasswordController;
 
 // Rotas públicas de Autenticação e Recuperação de Senha (com limite de taxa)
 Route::middleware('throttle:auth')->group(function () {
@@ -14,14 +14,11 @@ Route::middleware('throttle:auth')->group(function () {
     Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 });
 
-// Rota pública para criação de links (com limite de criação personalizado)
-Route::post('/links', [LinkController::class, 'store'])->middleware(['throttle:shorten']);
-
 // Rotas protegidas (precisam de token e limite de taxa)
 Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/user', fn (Request $request) => $request->user());
+    Route::get('/user', fn(Request $request) => $request->user());
 
-    Route::apiResource('links', LinkController::class)->except(['store']);
+    Route::apiResource('links', LinkController::class);
 });
