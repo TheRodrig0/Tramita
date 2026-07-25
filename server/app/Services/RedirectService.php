@@ -24,7 +24,6 @@ final class RedirectService
 
                 return [
                     'id' => $model->id,
-                    'user_id' => $model->user_id,
                     'is_active' => $model->is_active,
                     'expires_at' => $model->expires_at?->timestamp,
                     'destination_url' => $model->destination_url,
@@ -40,10 +39,8 @@ final class RedirectService
             abort(404, 'Link não encontrado ou inativo.');
         }
 
-        // Registra o clique de forma assíncrona apenas se o link pertencer a um usuário cadastrado
-        if ($linkData['user_id'] !== null) {
-            ProcessLinkClick::dispatch($linkData['id'], $clickData);
-        }
+        // Registra o clique de forma assíncrona
+        ProcessLinkClick::dispatch($linkData['id'], $clickData);
 
         return $linkData['destination_url'];
     }
