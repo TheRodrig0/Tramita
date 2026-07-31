@@ -154,3 +154,9 @@ Focus State: Crucial for desktop accessibility. When clicked, the border must ch
 ### 7.3. Panels and Cards
 
 Used to group shortening actions (e.g., Alias/Slug area). They should have generous padding (p-6 or p-8) and rounded corners (rounded-lg) to clearly separate the action area from the rest of the page.
+
+### 7.4. UI Component Library (shadcn/ui)
+
+The project leverages **shadcn/ui** (built on top of `@base-ui/react` primitives and Tailwind CSS v4) for modular, accessible, and themeable UI components.
+- Standard custom components are located in `app/src/components/ui/`.
+- Buttons and form elements (such as `Button` and `Input`) should be imported from `@/components/ui/` to ensure design system consistency and state bindings.

@@ -4,10 +4,9 @@ This document outlines the architectural rules, coding standards, and constraint
 
 ## Core Rules & Constraints
 
-### 1. Pure Backend REST API (No Frontend)
-- The `server` folder is a stateless backend API.
-- Do NOT add frontend packages, NPM scripts, Vite, TailwindCSS, or Blade templates for page rendering.
-- Keep only backend configurations and API routing files.
+### 1. Project Structure: Frontend & Backend Separation
+- **Backend**: The `server` folder is a stateless backend API built with Laravel. Do NOT add frontend packages, NPM scripts, Vite, TailwindCSS, or Blade templates for page rendering inside `server`. Keep only backend configurations and API routing files.
+- **Frontend**: The `app` folder is the React frontend application built with Vite, Tailwind CSS v4, and **shadcn/ui** (using `@base-ui/react` primitives). All UI components should follow this setup.
 
 ### 2. Structured Laravel Architecture
 - **Service Pattern**: Business logic (generating short codes, cache lookup, database management) must be separated into service classes under `app/Services/` (e.g., `UrlShortenerService.php`).
