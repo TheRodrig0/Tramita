@@ -1,3 +1,7 @@
+---
+name: pull_request
+description: Diretrizes e regras de formatação para Pull Requests do Tramita.
+---
 # Pull Request Guidelines
 
 When asked to generate a Pull Request description, you MUST follow this structure, inspired by standard open-source changelogs.
