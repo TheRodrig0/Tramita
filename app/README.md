@@ -2,6 +2,8 @@
 
 > **Status:** 🚧 Work in Progress (Em Desenvolvimento)
 
+> <img width="1916" height="871" alt="image" src="https://github.com/user-attachments/assets/e6ac1fed-db40-4713-b7b2-c218baca95db" />
+
 Este diretório contém a **aplicação web frontend** da plataforma Tramita. Ela é uma SPA (Single Page Application) moderna construída com **React** e **TypeScript**, responsável pela interface de usuário para encurtamento de links, gerenciamento de URLs e visualização de métricas de cliques.
 
 ---
