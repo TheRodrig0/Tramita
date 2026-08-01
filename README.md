@@ -2,6 +2,9 @@
 
 > **Status:** 🚧 Work in Progress (Em Desenvolvimento)
 
+> <img width="1916" height="871" alt="image" src="https://github.com/user-attachments/assets/e6ac1fed-db40-4713-b7b2-c218baca95db" />
+
+
 **Tramita** é uma plataforma *full stack* de alta performance para encurtamento de links e rastreamento de métricas de acesso (Cliques). O projeto é desenvolvido de forma modular, separando as responsabilidades entre o Backend (API) e o Frontend.
 
 ---
