@@ -1,5 +1,6 @@
 import HeroSection from "../components/features/landing-page/HeroSection";
-import DemoSection from "../components/features/landing-page/DemoSection";
+import FeaturesSection from "../components/features/landing-page/FeaturesSection";
+import CtaSection from "../components/features/landing-page/CtaSection";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -8,7 +9,8 @@ const LandingPage = () => {
         <>
             <Header />
             <HeroSection />
-            <DemoSection />
+            <FeaturesSection />
+            <CtaSection></CtaSection>
             <Footer />
         </>
     )
