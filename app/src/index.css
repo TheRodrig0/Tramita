@@ -54,8 +54,10 @@
 }
 
 
+html,
 body {
   margin: 0;
+  overscroll-behavior-y: none;
 }
 
 @theme inline {
