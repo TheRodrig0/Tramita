@@ -1,4 +1,4 @@
-import HeroSection from "../components/features/landingPage/HeroSection";
+import HeroSection from "../components/features/landing-page/HeroSection";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 

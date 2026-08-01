@@ -4,7 +4,7 @@ import Logo from "./Logo"
 const Header = () => {
     return (
         <>
-            <header className="text-white flex justify-between items-center bg-brand-dark py-4 px-6">
+            <header className=">sticky top-0 z-50  text-white flex justify-between items-center bg-brand-dark py-4 px-6">
                 <a href="#" className="font-black text-2xl tracking-tighter flex items-center gap-2 transition-colors">
                     <Logo />
                     <p>Tramita</p>

@@ -1,4 +1,4 @@
-import urlLogo from '../assets/logo_tramita.svg';
+import urlLogo from '../assets/logo-tramita.svg';
 
 const Logo = () => {
     return (
