@@ -1,4 +1,5 @@
 import HeroSection from "../components/features/landing-page/HeroSection";
+import DemoSection from "../components/features/landing-page/DemoSection";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -7,6 +8,7 @@ const LandingPage = () => {
         <>
             <Header />
             <HeroSection />
+            <DemoSection />
             <Footer />
         </>
     )
