@@ -2,16 +2,16 @@ import Button from "../../Button"
 
 const CtaSection = () => {
     return (
-        <section className="relative text-white px-6 md:px-12 py-30 flex flex-col items-center text-center bg-brand-dark">
+        <section className="relative text-white px-6 md:px-12 py-50 flex flex-col items-center text-center bg-brand-dark">
             <h2 className="font-black text-3xl md:text-5xl tracking-tight mb-4">
-                Pronto para otimizar suas URLs?
+                Pronto para otimizar seus Links?
             </h2>
 
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mb-8">
                 Crie sua conta gratuita em poucos passos e comece a personalizar seus links hoje mesmo.
             </p>
 
-            <Button className="px-8 py-3 w-full sm:w-auto font-bold mb-3">
+            <Button className="px-8 py-3 w-full sm:w-auto mb-3">
                 Criar conta gratuita
             </Button>
 
