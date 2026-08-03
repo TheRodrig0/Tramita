@@ -9,8 +9,6 @@ const RegisterForm = () => {
 
     const handleSubmit = (formData: FormData) => {
         setError(null)
-        const name = formData.get("name")
-        const email = formData.get("email")
         const password = formData.get("password")
         const confirmPassword = formData.get("confirm-password")
 
@@ -18,8 +16,6 @@ const RegisterForm = () => {
             setError("As senhas não coincidem.")
             return
         }
-
-        console.log({ name, email, password: password ? "[REDACTED]" : null })
     }
 
     return (
