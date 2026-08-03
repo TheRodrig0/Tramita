@@ -8,7 +8,7 @@ const LoginForm = () => {
         const email = formData.get("email")
         const password = formData.get("password")
         const rememberMe = formData.get("remember-me")
-        console.log({ email, password, rememberMe })
+        console.log({ email, password: password ? "[REDACTED]" : null, rememberMe })
     }
 
     return (
