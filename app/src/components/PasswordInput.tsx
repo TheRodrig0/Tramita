@@ -23,7 +23,7 @@ const PasswordInput = ({ className, ref, ...props }: PasswordInputProps) => {
                 className="absolute right-4 text-slate-400 hover:text-white transition-colors duration-200 focus:outline-none cursor-pointer"
                 aria-label={showPassword ? "Esconder senha" : "Mostrar senha"}
             >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
         </div>
     )
