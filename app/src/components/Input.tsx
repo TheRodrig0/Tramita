@@ -1,25 +1,24 @@
-import { type InputHTMLAttributes, forwardRef } from "react"
+import { type InputHTMLAttributes, type Ref } from "react"
 import { cn } from "../lib/utils"
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> { }
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    ref?: Ref<HTMLInputElement>
+}
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, ...props }, ref) => {
-        return (
-            <input
-                type={type}
-                className={cn(
-                    "flex-grow w-full min-w-0 px-5 py-3 text-lg text-white",
-                    "bg-white/10 border border-white/20 rounded-lg",
-                    "placeholder-slate-400 focus:outline-none",
-                    className
-                )}
-                ref={ref}
-                {...props}
-            />
-        )
-    }
-)
-Input.displayName = "Input"
+const Input = ({ className, type, ref, ...props }: InputProps) => {
+    return (
+        <input
+            type={type}
+            ref={ref}
+            className={cn(
+                "flex-grow w-full min-w-0 px-5 py-3 text-lg text-white",
+                "bg-white/10 border border-white/20 rounded-lg",
+                "placeholder-slate-400 focus:outline-none",
+                className
+            )}
+            {...props}
+        />
+    )
+}
 
 export default Input
