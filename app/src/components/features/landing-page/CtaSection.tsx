@@ -1,4 +1,5 @@
 import Button from "../../Button"
+import { Link } from "react-router-dom"
 
 const CtaSection = () => {
     return (
@@ -11,9 +12,11 @@ const CtaSection = () => {
                 Crie sua conta gratuita em poucos passos e comece a personalizar seus links hoje mesmo.
             </p>
 
-            <Button className="px-8 py-3 w-full sm:w-auto mb-3">
-                Criar conta gratuita
-            </Button>
+            <Link to="/register" className="w-full sm:w-auto mb-3">
+                <Button className="px-8 py-3 w-full">
+                    Criar conta gratuita
+                </Button>
+            </Link>
 
             <span className="text-sm text-slate-400">
                 ✨ Totalmente grátis para sempre no plano básico
