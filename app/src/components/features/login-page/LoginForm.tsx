@@ -4,11 +4,8 @@ import Input from "../../Input"
 import PasswordInput from "../../PasswordInput"
 
 const LoginForm = () => {
-    const handleSubmit = (formData: FormData) => {
-        const email = formData.get("email")
-        const password = formData.get("password")
-        const rememberMe = formData.get("remember-me")
-        console.log({ email, password: password ? "[REDACTED]" : null, rememberMe })
+    const handleSubmit = (_formData: FormData) => {
+        // Form submission logic
     }
 
     return (
