@@ -11,7 +11,7 @@ const Input = ({ className, type, ref, ...props }: InputProps) => {
             type={type}
             ref={ref}
             className={cn(
-                "flex-grow w-full min-w-0 px-5 py-3 text-lg text-white",
+                "grow w-full min-w-0 px-5 py-3 text-lg text-white",
                 "bg-white/10 border border-white/20 rounded-lg",
                 "placeholder-slate-400 focus:outline-none",
                 className

@@ -15,7 +15,6 @@ const HeroSection = () => {
                     Encurte, personalize e rastreie cada clique. Tudo na mesma plataforma.
                 </p>
 
-                {/* Flat, Bold Shortener Panel (Dark Mode) */}
                 <div className="w-full max-w-4xl bg-brand-panel-dark p-6 md:p-10 rounded-xl border border-white/10 flex flex-col gap-4">
                     <div className="flex flex-col md:flex-row items-stretch gap-4 w-full">
                         <div className="relative w-full flex items-center">
