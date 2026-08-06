@@ -1,6 +1,6 @@
 import Button from "./Button"
 import Logo from "./Logo"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 
 const Header = () => {
     return (
