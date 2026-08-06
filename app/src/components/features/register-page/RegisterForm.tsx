@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import Button from "../../Button"
 import Input from "../../Input"
 import PasswordInput from "../../PasswordInput"
@@ -9,6 +9,8 @@ const RegisterForm = () => {
 
     const handleSubmit = (formData: FormData) => {
         setError(null)
+        // const name = formData.get("name")
+        // const email = formData.get("email")
         const password = formData.get("password")
         const confirmPassword = formData.get("confirm-password")
 

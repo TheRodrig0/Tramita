@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import Button from "../../Button"
 import Input from "../../Input"
 import PasswordInput from "../../PasswordInput"
 
 const LoginForm = () => {
     const handleSubmit = (_formData: FormData) => {
-        // Form submission logic
+        // const email = formData.get("email")
+        // const password = formData.get("password")
+        // const rememberMe = formData.get("remember-me")
     }
 
     return (
