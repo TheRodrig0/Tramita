@@ -4,7 +4,7 @@ import { Link2, Check } from 'lucide-react'
 
 const HeroSection = () => {
     return (
-        <section className="bg-brand-dark pt-20 pb-32 px-6 flex flex-col items-center justify-center text-center">
+        <section className="bg-brand-dark min-h-screen flex flex-col items-center justify-center text-center">
 
             <div className="flex flex-col items-center w-full max-w-5xl">
                 <h1 className="font-black text-5xl md:text-7xl tracking-tighter text-white max-w-4xl leading-[1.1] mb-6">
