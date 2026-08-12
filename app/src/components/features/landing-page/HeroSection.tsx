@@ -4,9 +4,12 @@ import { Link2, Check } from 'lucide-react'
 
 const HeroSection = () => {
     return (
-        <section className="bg-brand-dark pt-20 pb-32 px-6 flex flex-col items-center justify-center text-center">
+        <section className="bg-brand-dark min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
+            {/* Background Ambient Glows */}
+            <div className="absolute top-[40%] left-[20%] w-87.5 sm:w-125 h-87.5 sm:h-125 bg-brand-primary/15 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none" />
+            <div className="absolute top-[30%] right-[20%] w-75 sm:w-112.5 h-75 sm:h-112.5 bg-teal-500/10 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none animate-pulse animation-duration-[8s]" />
 
-            <div className="flex flex-col items-center w-full max-w-5xl">
+            <div className="flex flex-col items-center w-full max-w-5xl relative">
                 <h1 className="font-black text-5xl md:text-7xl tracking-tighter text-white max-w-4xl leading-[1.1] mb-6">
                     Construa conexões mais fortes com links curtos.
                 </h1>
