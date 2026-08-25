@@ -1,4 +1,4 @@
-# 🔗 Tramita
+# 🔗 Tramita (Pausei para focar no meu TCC)
 
 > **Status:** 🚧 Work in Progress (Em Desenvolvimento)
 
