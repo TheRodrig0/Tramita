@@ -1,29 +1,29 @@
-# 🔗 Tramita (Pausei para focar no meu TCC [Pontua](https://pontuaffr.com.br))
+# 🔗 Tramita
 
-> **Status:** 🚧 Work in Progress (Em Desenvolvimento)
+**Tramita** é uma API RESTful de alta performance para encurtamento de links e rastreamento de métricas de acesso (cliques), desenvolvida em **PHP / Laravel** com foco em performance, boas práticas de design de software e arquitetura desacoplada.
 
-> <img width="1917" height="871" alt="image" src="https://github.com/user-attachments/assets/ecff12c3-f6f6-4813-a1a5-daf719b75a40" />
+---
 
-**Tramita** é uma plataforma *full stack* de alta performance para encurtamento de links e rastreamento de métricas de acesso (Cliques). O projeto é desenvolvido de forma modular, separando as responsabilidades entre o Backend (API) e o Frontend.
+## 🛠️ Tecnologias
+
+- **Backend:** PHP, Laravel, Laravel Octane ([FrankenPHP](https://frankenphp.dev/))
+- **Banco de Dados:** PostgreSQL (Docker) / SQLite (desenvolvimento e testes)
+- **Qualidade & CI/CD:** PHPUnit (testes unitários e de integração), GitHub Actions, Dependabot
+- **Infraestrutura:** Docker & Docker Compose
 
 ---
 
 ## 📂 Estrutura do Repositório
 
-Este repositório está organizado como um monorepo, separando os serviços da aplicação:
-
-- **[`/server`](./server)**: Contém o Backend da aplicação, uma API RESTful de alta performance construída em **Laravel / PHP**.
-  *(Para detalhes sobre arquitetura, banco de dados e testes da API, veja o [README do Server](./server/README.md)).*
-- **[`/app`](./app)**: Contém o Frontend da aplicação web.
+- **[`/server`](./server)**: Contém a API RESTful em Laravel / PHP, Docker Compose, migrations, services, form requests e suíte de testes PHPUnit.
+  *(Para detalhes completos de arquitetura e configuração, veja o [README do Server](./server/README.md)).*
 
 ---
 
 ## 🚀 Como Iniciar
 
-Se você deseja rodar a API localmente, siga os passos abaixo:
-
 1. Entre na pasta do servidor:
    ```bash
    cd server
    ```
-2. Siga as instruções descritas no `README.md` de dentro da pasta `/server`.
+2. Siga as instruções descritas no [`server/README.md`](./server/README.md) para subir via Docker Compose ou localmente com `php artisan serve`.
